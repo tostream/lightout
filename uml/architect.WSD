@@ -1,0 +1,14 @@
+@startuml
+node "BackEnd"{
+[django]
+}
+node "FrontEnd"{
+[wordpress] - [DB]
+[django] -> [DB] : insert
+}
+
+node "Data" {
+API - [Fastf1]
+[django] ..> API :use
+}
+@enduml

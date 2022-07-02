@@ -1,0 +1,15 @@
+@startuml 
+actor guest as g 
+package FrontEnd {
+    usecase "MainPage" as mp
+    usecase "Nevigator" as n
+    usecase "event schedule" as es
+}
+package Backend {
+    usecase "eventSchedule.worker" as ew
+}
+g -> mp
+mp -down-> n
+n -down-> es
+
+@enduml

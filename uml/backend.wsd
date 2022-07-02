@@ -1,0 +1,15 @@
+@startuml BackEnd
+start
+:eventSchedule.worker wake up;
+:Get the latest eventSchedule.table;
+:trigger schedule extractor;
+:connect FastF1;
+:extract events from the current season to the latest season & event;
+if(events updated) then
+    :tirgger schedule transformer;
+    :transform the data set to LightOut format;
+    :tirgger schedule loader;
+    :upsert data to eventSchedule.table;
+endif
+end
+@enduml

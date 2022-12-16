@@ -1,2 +1,4 @@
 /.venv*
 /.vscode
+lightout/cache/*
+*.cpython-310.pyc

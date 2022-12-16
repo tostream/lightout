@@ -10,3 +10,7 @@ MONTH_DROPDOWN = "month-dropdown"
 
 YEAR_DROPDOWN = "year-dropdown"
 SELECT_ALL_YEARS_BUTTON = "select-all-years-button"
+
+Drivers = "Driver-dropdown"
+Grand_Prix = "GP-dropdown"
+Sessions = 'Sessions-dropdown'

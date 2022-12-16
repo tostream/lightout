@@ -15,9 +15,9 @@ def render(app: Dash, source: DataSource) -> html.Div:
             Input(ids.YEAR_DROPDOWN, "value"),
         ],
     )
-    def select_gp(years: list[str]) -> list[str]:
+    def select_gp(years: str):
         if years is None: return ['']
-        print(years)
+        return grand_prix.load_gp_data(years)["EventName"]
         if '2020' in years:
             return grand_prix.all_grand_prix
         else:

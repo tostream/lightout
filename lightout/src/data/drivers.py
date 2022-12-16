@@ -13,7 +13,7 @@ import fastf1
 class DataSchema:
     RoundNumber = "RoundNumber"
     Country = "Country"
-    OfficialEventName = "EventName"
+    OfficialEventName = "OfficialEventName"
 
 
 
@@ -38,19 +38,22 @@ def compose(*functions: Preprocessor) -> Preprocessor:
     return reduce(lambda f, g: lambda x: g(f(x)), functions)
     
 
-def load_gp_data(year: str, locale: str='en') -> pd.DataFrame:
+def load_driver_data(year: str,gp: str, session:str, locale: str='en') -> pd.DataFrame:
     # load the data from the CSV file
-    schedule = fastf1.get_event_schedule(int(year))
+    #schedule = fastf1.get_event_schedule(int(year))
+    sessins = fastf1.get_session(2021, gp, session)
     
-    #fastf1.Cache.enable_cache("C:\\source\\lightout\\lightout\\cache\\in")  
-    preprocessor = compose(
-        create_round_num,
-        create_country,
-        create_event_name,
-    )
+    
+    fastf1.Cache.enable_cache("C:\\source\\lightout\\lightout\\cache\\in")  
+    sessins.load()
+    drivers=sessins.results['Abbreviation']
+    #preprocessor = compose(
+    #    create_round_num,
+    #    create_country,
+    #    create_event_name,
+    #)
     #preprocessor(lap).to_csv("C:\\source\\lightout\\lightout\\cache\\in\\laps\\temp_laps.csv", encoding='utf-8')
-    return preprocessor(schedule)
-
+    return drivers
     
 all_grand_prix = ["Abu Dhabi Grand Prix","Sao Paulo Grand Prix",
     "Mexico City Grand Prix","United States Grand Prix"]

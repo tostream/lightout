@@ -2,6 +2,7 @@ import i18n
 from dash import Dash, dcc, html
 from dash.dependencies import Input, Output
 
+from ..data.drivers import load_driver_data
 from ..data.source import DataSource
 from . import ids
 from .dropdown_helper import to_dropdown_options
@@ -17,10 +18,11 @@ def render(app: Dash, source: DataSource) -> html.Div:
             Input(ids.Sessions, "value"),
         ],
     )
-    def select_driver(years: list[str], gp: list[str], session: list[str]) :
+    def select_driver(years: str, gp: str, session: str) :
         if years is not None and gp is not  None and session is not None:
-            print('cp dr')
-            return ["VER","HAM","PER","RUS"]
+            result = load_driver_data(years,gp,session)
+            return result
+            #return ["VER","HAM","PER","RUS"]
         else:
             return ''
     return html.Div(

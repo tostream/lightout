@@ -25,7 +25,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
             dcc.Dropdown(
                 id=ids.Sessions,
                 options=to_dropdown_options(all_sessions),
-                value=None,
+                placeholder="Session",
                 multi=False,
             ),
         ]

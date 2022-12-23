@@ -31,8 +31,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
             html.H6("Driver"),
             dcc.Dropdown(
                 id=ids.Drivers,
-                options='',
-                value=None,
+                placeholder="Drivers",
                 multi=True,
             ),
         ]

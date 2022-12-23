@@ -42,7 +42,7 @@ def load_gp_data(year: str, locale: str='en') -> pd.DataFrame:
     # load the data from the CSV file
     schedule = fastf1.get_event_schedule(int(year))
     
-    #fastf1.Cache.enable_cache("C:\\source\\lightout\\lightout\\cache\\in")  
+    fastf1.Cache.enable_cache("C:\\source\\lightout\\lightout\\cache\\in")  
     preprocessor = compose(
         create_round_num,
         create_country,

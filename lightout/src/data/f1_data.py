@@ -5,7 +5,9 @@ from typing import Callable
 import babel.dates
 import i18n
 import pandas as pd
+import pymongo
 from pandas import Timedelta
+from pymongo import MongoClient
 
 import fastf1
 
@@ -55,6 +57,7 @@ def get_f1_session(year: int,gp: str, session:str):
 
 def load_lap_data(year: int,gp: str, session:str,driver: str, locale: str='en') -> pd.DataFrame:
     # load the data from the CSV file
+    """
     f1_session = get_f1_session(year ,gp ,session)
     print('cp3')
     print(year)
@@ -73,6 +76,20 @@ def load_lap_data(year: int,gp: str, session:str,driver: str, locale: str='en') 
     )
     #preprocessor(lap).to_csv("C:\\source\\lightout\\lightout\\cache\\in\\laps\\temp_laps.csv", encoding='utf-8')
     return preprocessor(lap)
+    """
+    print('cp1')
+    client = MongoClient("mongodb://localhost:27017/")
+    # database
+    print('c1p')
+    db = client["f1_database"]
+    print('cp2')
+    # collection
+    company= db["matches"]
+    print('cp3')
+    data_from_db = company.find_one({'driverNum':'44'})
+    print(data_from_db)
+    print(data_from_db["laps"])
+    return pd.DataFrame(data_from_db["laps"])
 
 
 

@@ -16,6 +16,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
                 id=ids.YEAR_DROPDOWN,
                 options=to_dropdown_options(source.unique_years),
                 multi=False,
+                placeholder="Season",
             ),
         ]
     )

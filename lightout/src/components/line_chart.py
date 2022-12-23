@@ -20,19 +20,11 @@ def render(app: Dash, source: DataSource) -> html.Div:
         Output(ids.LINE_CHART, "children"),
         [
             Input(ids.YEAR_DROPDOWN, "value"),
-            Input(ids.Grand_Prix, "value"),
-            Input(ids.Sessions, "value"),
-            Input(ids.Drivers, "value"),
         ],
     )
     def update_line_chart(
         years: int,
-        gp: str,
-        session: str,
-        drivers: list[str]
     ) -> html.Div:
-        print(drivers)
-        if drivers is None or len(drivers)<1: return html.Div(id=ids.LINE_CHART)
         #filtered_source = source.filter(years, months, categories)
         #if not filtered_source.row_count:
         #    return html.Div(i18n.t("general.no_data"), id=ids.LINE_CHART)
@@ -41,7 +33,7 @@ def render(app: Dash, source: DataSource) -> html.Div:
         #data_set=source
         #data_set.to_csv("C:\\source\\lightout\\lightout\\cache\\in\\laps\\temp_max_laps.csv", encoding='utf-8')
         #print(data_set)
-        data_set = load_lap_data(years, gp, session, drivers[0])
+        data_set = load_lap_data(years, '', 'session', 'drivers')
         fig = px.line(
             data_set,
             x=data_set.LapNumber,

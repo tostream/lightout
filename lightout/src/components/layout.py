@@ -6,7 +6,7 @@ from src.components import (drivers_dropdown, gp_dropdown, line_chart,
 from ..data.source import DataSource
 
 
-def create_layout(app: Dash, source: DataSource) -> html.Div:
+def create_layout(app: Dash) -> html.Div:
     return html.Div(
         className="app-div",
         children=[
@@ -16,14 +16,14 @@ def create_layout(app: Dash, source: DataSource) -> html.Div:
                 dbc.Row(
                     className="dropdown-container g-4 lg-3 md-6",
                     children=[
-                        year_dropdown.render(app, source),
-                        gp_dropdown.render(app,source),
-                        session_dropdown.render(app,source),
-                        drivers_dropdown.render(app, source),
+                        year_dropdown.render(app),
+                        gp_dropdown.render(app),
+                        session_dropdown.render(app),
+                        drivers_dropdown.render(app),
                     ],
                 ),
             ),
             html.Hr(),
-            line_chart.render(app, source),
+            line_chart.render(app),
         ],
     )

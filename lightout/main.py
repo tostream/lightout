@@ -10,7 +10,7 @@ from src.data.source import DataSource
 LOCALE = "en"
 DATA_PATH = "./data/transactions.csv"
 
-
+"""
 def main() -> None:
 
     # set the locale and load the translations
@@ -26,7 +26,7 @@ def main() -> None:
     app.title = i18n.t("general.app_title")
     app.layout = create_layout(app, data)
     app.run(host="0.0.0.0", port=8080, debug=True)
-
+"""
 
 data = load_transaction_data(DATA_PATH, LOCALE)
 data = DataSource(data)
@@ -38,7 +38,7 @@ i18n.load_path.append("locale")
 
 # load the data and create the data manager
 dash_app.title = i18n.t("general.app_title")
-dash_app.layout = create_layout(dash_app, data)
+dash_app.layout = create_layout(dash_app)
 app = dash_app.server
 if __name__ == "__main__":
     #main()

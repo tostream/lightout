@@ -1,6 +1,6 @@
 import datetime as dt
 from functools import partial, reduce
-from typing import Callable
+from typing import Callable, Collection
 
 import babel.dates
 import i18n
@@ -43,57 +43,35 @@ def compose(*functions: Preprocessor) -> Preprocessor:
     return reduce(lambda f, g: lambda x: g(f(x)), functions)
 
 def get_f1_session(year: int,gp: str, session:str):
-    print('cp5')
-    print(year)
-    print(gp)
-    print(session)
     f1_session = fastf1.get_session(int(year), gp, session)
-    print('cp6')
     
     fastf1.Cache.enable_cache("C:\\source\\lightout\\lightout\\cache\\in")  
     f1_session.load()
     return f1_session
 
+def getMongoClient(url:str = "mongodb://localhost:27017/",instance:str ="admin", dbName:str = ""):
+    client = MongoClient(url)
+    db = client[instance]
+    company= db[dbName]
+    return company
 
 def load_lap_data(year: int,gp: str, session:str,driver: str, locale: str='en') -> pd.DataFrame:
     # load the data from the CSV file
-    """
-    f1_session = get_f1_session(year ,gp ,session)
-    print('cp3')
-    print(year)
-    print(gp)
-    print(driver)
-    print('cp4')
-    laps=f1_session.laps
-    print('cp1')
-    print(laps)
-    print('cp2')
-    lap= laps.pick_driver(driver)
-    preprocessor = compose(
-        create_driver_column,
-        create_lapnum_column,
-        format_laptime,
-    )
-    #preprocessor(lap).to_csv("C:\\source\\lightout\\lightout\\cache\\in\\laps\\temp_laps.csv", encoding='utf-8')
-    return preprocessor(lap)
-    """
-    print('cp1')
-    client = MongoClient("mongodb://localhost:27017/")
+    company= getMongoClient(instance ="f1_database", dbName = "matches")
     # database
-    print('c1p')
-    db = client["f1_database"]
-    print('cp2')
-    # collection
-    company= db["matches"]
-    print('cp3')
     data_from_db = company.find_one({'driverNum':'44'})
-    print(data_from_db)
-    print(data_from_db["laps"])
     return pd.DataFrame(data_from_db["laps"])
 
+def load_gp_data(year: str):
+    company= getMongoClient(instance ="f1_database", dbName = "matches")
+    data_from_db = company.find_one({'index':'GP','years':year})
+    print(type(data_from_db["GP"]))
+    print(type(data_from_db))
+    return (data_from_db["GP"])
 
 
 def load_driver_data(year: int,gp: str,session:str, locale: str='en') -> pd.DataFrame:
+    client= getMongoClient()
     # load the data from the CSV file
     #schedule = fastf1.get_event_schedule(int(year))
     #sessins = fastf1.get_session(2021, gp, session)

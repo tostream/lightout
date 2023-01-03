@@ -7,7 +7,7 @@ from . import ids
 from .dropdown_helper import to_dropdown_options
 
 
-def render(app: Dash, source: DataSource) -> html.Div:
+def render(app: Dash) -> html.Div:
     """@app.callback(
         Output(ids.Drivers, "value"),
         [

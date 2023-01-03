@@ -15,7 +15,7 @@ from . import ids
 testing_data=['1:30.006','1:30.002','1:30.008','1:30.003','1:30.004','1:30.001','1:30.005',
 '1:30.007','1:30.009']
 
-def render(app: Dash, source: DataSource) -> html.Div:
+def render(app: Dash) -> html.Div:
     @app.callback(
         Output(ids.LINE_CHART, "children"),
         [

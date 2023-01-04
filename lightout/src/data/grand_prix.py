@@ -31,7 +31,6 @@ def create_country(df: pd.DataFrame) -> pd.DataFrame:
 
 def create_event_name(df: pd.DataFrame) -> pd.DataFrame:
     df[DataSchema.OfficialEventName] = df[DataSchema.OfficialEventName]
-    print(df)
     return df
 
 
@@ -44,9 +43,6 @@ def load_gp_data(year: str, locale: str='en') -> pd.DataFrame:
     schedule = fastf1.get_event_schedule(int(year))
     
     fastf1.Cache.enable_cache("C:\\source\\lightout\\lightout\\cache\\in")  
-    print('cp1')
-    print(schedule)
-    print('cp2')
     preprocessor = compose(
         create_round_num,
         create_country,

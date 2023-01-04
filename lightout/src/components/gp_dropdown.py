@@ -19,9 +19,6 @@ def render(app: Dash) -> html.Div:
     def select_gp(years: str):
         if years is None: return ['']
         result = load_gp_data(years)
-        print('cp1')
-        print(type(result))
-        print(result)
         return result
 
     return html.Div(

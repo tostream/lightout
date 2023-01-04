@@ -2,7 +2,7 @@ import i18n
 from dash import Dash, dcc, html
 from dash.dependencies import Input, Output
 
-from ..data.drivers import load_driver_data
+from ..data.f1_data import load_driver_data
 from ..data.source import DataSource
 from . import ids
 from .dropdown_helper import to_dropdown_options
@@ -20,7 +20,7 @@ def render(app: Dash) -> html.Div:
     )
     def select_driver(years: str, gp: str, session: str) :
         if years is not None and gp is not  None and session is not None:
-            result = load_driver_data(years,gp,session)
+            result = load_driver_data(int(years),gp,session)
             return result
             #return ["VER","HAM","PER","RUS"]
         else:

@@ -2,7 +2,7 @@ import i18n
 from dash import Dash, dcc, html
 from dash.dependencies import Input, Output
 
-from ..data.f1_data import load_driver_data
+from ..data.data_sqlite import load_driver_data
 from ..data.source import DataSource
 from . import ids
 from .dropdown_helper import to_dropdown_options

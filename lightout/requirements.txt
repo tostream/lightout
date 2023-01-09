@@ -7,3 +7,6 @@ plotly
 pyyaml
 fastf1
 python-i18n[YAML]
+sqlalchemy
+pymongo
+gunicorn

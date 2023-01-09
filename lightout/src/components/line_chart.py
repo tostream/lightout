@@ -7,7 +7,7 @@ from pandas import DataFrame
 
 import fastf1
 
-from ..data.f1_data import load_lap_data
+from ..data.data_sqlite import load_lap_data
 from ..data.loader import DataSchema
 from ..data.source import DataSource
 from . import ids

@@ -11,6 +11,7 @@ years = ['2018','2019','2020','2021','2022']
 
 def render(app: Dash) -> html.Div:
     return html.Div(
+        className='col-md',
         children=[
             html.H6(i18n.t("general.year")),
             dcc.Dropdown(

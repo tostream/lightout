@@ -22,6 +22,7 @@ def render(app: Dash) -> html.Div:
         return result
 
     return html.Div(
+        className='col-md',
         children=[
             #html.H6(i18n.t("general.driver")),
             html.H6("Grand Prix"),
